@@ -1,6 +1,7 @@
 import { watch, onBeforeUnmount, type Ref, ref } from "vue";
 import type { StudioDocument } from "../../../shared/types";
 import { renderPreview } from "../../projection";
+import { activeOrientation } from "../../horizon/model/calibration";
 export function usePreview(
   doc: StudioDocument,
   canvas: Ref<HTMLCanvasElement | undefined>,
@@ -13,6 +14,8 @@ export function usePreview(
       doc.asset,
       JSON.stringify(doc.projection),
       JSON.stringify(doc.edge),
+      JSON.stringify(doc.calibration.applied),
+      doc.calibration.enabled,
     ],
     () => {
       cancelAnimationFrame(frame);
@@ -25,6 +28,7 @@ export function usePreview(
               asset: doc.asset,
               projection: { ...doc.projection },
               edge: { ...doc.edge },
+              orientation: activeOrientation(doc.calibration),
             },
             600,
           );

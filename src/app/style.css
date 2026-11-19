@@ -725,3 +725,341 @@ footer b {
     line-height: 1.8;
   }
 }
+
+/* ---------- Horizon calibration ---------- */
+.horizon-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.canvas-wrap.marking {
+  cursor: crosshair;
+}
+.canvas-wrap.marking:active {
+  cursor: crosshair;
+}
+.horizon-line path {
+  fill: none;
+  stroke: #ffd66b;
+  stroke-width: 1.6;
+  stroke-dasharray: 7 5;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+}
+.mark circle {
+  fill: #2f7a56;
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+.mark text {
+  fill: #fff;
+  font: 600 11px "DM Sans", sans-serif;
+  pointer-events: none;
+}
+.mark.outlier circle {
+  fill: #c4553d;
+}
+.mark.disabled circle {
+  fill: rgba(120, 128, 120, 0.6);
+}
+.mark.selected circle {
+  stroke: #ffd66b;
+  stroke-width: 3;
+}
+.marking-banner {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(29, 45, 34, 0.78);
+  color: #eef7ee;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.canvas-area.calibrating {
+  border-color: #c9dbc4;
+}
+.calibration-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  flex-wrap: wrap;
+}
+.calibration-actions .primary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 10px;
+  border-radius: 6px;
+}
+.calibration-actions .text-button {
+  padding: 4px 0;
+}
+.calibration-actions .mini {
+  margin: 0;
+}
+.horizon-source {
+  margin: 16px auto 4px;
+  max-width: 640px;
+  border: 1px solid #dfe5dc;
+  border-radius: 10px;
+  background: #fbfcf9;
+  overflow: hidden;
+}
+.horizon-source header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #e7ebe3;
+  flex-wrap: wrap;
+}
+.horizon-source header .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  display: block;
+  margin-bottom: 3px;
+}
+.horizon-source header strong {
+  font-size: 10px;
+  font-weight: 500;
+  color: #566a59;
+}
+.strip-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #97a291;
+  font-size: 9px;
+}
+.strip-tools button {
+  border: 1px solid #dfe5da;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  color: #6f8068;
+  background: #fff;
+}
+.strip-tools button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.strip-zoom {
+  min-width: 26px;
+  text-align: center;
+  font-size: 9px;
+  color: #6f8068;
+}
+.strip-scroll {
+  max-height: 230px;
+  overflow: auto;
+  padding: 8px 12px 12px;
+  background: repeating-conic-gradient(#eff2ec 0 25%, #fff 0 50%) 50% / 12px 12px;
+}
+.strip-scroll canvas {
+  display: block;
+  cursor: default;
+  touch-action: none;
+  border-radius: 3px;
+  margin: 0 auto;
+  box-shadow: 0 0 0 1px #dfe5dc;
+}
+.strip-scroll canvas.editable {
+  cursor: crosshair;
+}
+.horizon-panel .horizon-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+}
+.mark-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d8e3d7;
+  background: #f4f8f2;
+  color: #4e7e5b;
+  border-radius: 6px;
+  padding: 8px 11px;
+  font-size: 10px;
+}
+.mark-button.active {
+  background: #dfead8;
+  border-color: #c3d6c1;
+  color: #39603f;
+}
+.horizon-panel .text-button {
+  padding: 4px 0;
+}
+.marking-hint {
+  color: #6c7f68;
+  margin-top: 8px;
+}
+.rebind-note {
+  color: #5b7a5f;
+  border-left: 2px solid #c9dbc4;
+  padding-left: 8px;
+  margin-top: 8px;
+}
+.horizon-methods {
+  margin: 16px 0 6px;
+}
+.horizon-methods button {
+  position: relative;
+}
+.horizon-methods .rec {
+  position: absolute;
+  top: -7px;
+  right: 3px;
+  font-style: normal;
+  font-size: 7px;
+  letter-spacing: 0.3px;
+  color: #fff;
+  background: #4e7e5b;
+  border-radius: 3px;
+  padding: 1px 3px;
+  line-height: 1.4;
+}
+.fit-readout {
+  border-top: 1px solid #edf0ea;
+  border-bottom: 1px solid #edf0ea;
+  margin: 10px 0 12px;
+  padding: 10px 0 8px;
+}
+.fit-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #8b9786;
+  padding: 2px 0;
+}
+.fit-row b {
+  font-weight: 500;
+  color: #4f6150;
+  font-variant-numeric: tabular-nums;
+}
+.confidence {
+  margin-top: 8px;
+  font-size: 9px;
+  color: #7a8a74;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.confidence-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: #ecf0e9;
+  overflow: hidden;
+}
+.confidence-bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #c7a75b, #4e7e5b);
+  border-radius: 2px;
+  transition: width 0.2s;
+}
+.mark-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.mark-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+.mark-list li.selected {
+  background: #f2f6ee;
+  box-shadow: inset 0 0 0 1px #dfe8d9;
+}
+.mark-list li.disabled {
+  opacity: 0.45;
+}
+.mark-index {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2f7a56;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  flex: none;
+}
+.mark-list li.outlier .mark-index {
+  background: #c4553d;
+}
+.residual {
+  font-size: 9px;
+  color: #7d8b78;
+  font-variant-numeric: tabular-nums;
+  flex: 1;
+}
+.mark-list li.outlier .residual {
+  color: #b0573f;
+}
+.icon-button {
+  padding: 2px;
+  color: #8fa08a;
+  display: flex;
+  border-radius: 3px;
+}
+.icon-button:hover {
+  color: #4e7e5b;
+  background: #eff4ec;
+}
+.warn {
+  color: #b0573f;
+}
+.inline-button {
+  color: #4e7e5b;
+  font-size: 9px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0 2px;
+}
+.horizon-apply {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+}
+.horizon-apply .primary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  font-size: 10px;
+  border-radius: 6px;
+}
+.horizon-apply .primary:disabled {
+  cursor: not-allowed;
+}
+.calibration-toggle {
+  font-size: 9px;
+  color: #71806c;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

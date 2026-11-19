@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import type { StudioDocument, ExportSettings } from "../../../shared/types";
 import { encodeImage } from "../lib/encode";
+import { activeOrientation } from "../../horizon/model/calibration";
 export function useExport(doc: StudioDocument) {
   const busy = ref(false),
     progress = ref(0),
@@ -16,6 +17,9 @@ export function useExport(doc: StudioDocument) {
         asset: doc.asset,
         projection: { ...doc.projection },
         edge: { ...doc.edge },
+        orientation: activeOrientation(doc.calibration)
+          ? { ...activeOrientation(doc.calibration)! }
+          : null,
       },
       options = { ...settings };
     try {

@@ -18,6 +18,7 @@ export function renderRows(
         image.width,
         fullHeight,
         s.projection,
+        s.orientation,
       );
       const rgba = sample(s.asset, uv.u, uv.v, s.edge.seam);
       const result = applyEdge(

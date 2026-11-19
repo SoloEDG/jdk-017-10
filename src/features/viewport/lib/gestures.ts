@@ -6,6 +6,8 @@ export function dragView(
   dy: number,
   extent: number,
 ): Partial<Projection> {
+  // A zero-width canvas (hidden or not yet laid out) must not produce NaN yaw.
+  if (!Number.isFinite(extent) || extent <= 0) return {};
   return {
     yaw: wrap(start.yaw + (dx / extent) * 360, 360),
     pitch: clamp(start.pitch + (dy / extent) * 180, -85, 85),

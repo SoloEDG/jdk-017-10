@@ -1,4 +1,5 @@
 import type { Projection, Edge } from "./types";
+import { identityCalibration } from "../features/horizon/model/calibration";
 export const defaultProjection = (): Projection => ({
   mode: "planet",
   zoom: 1,
@@ -12,3 +13,4 @@ export const defaultEdge = (): Edge => ({
   background: "#e9eff4",
   transparent: false,
 });
+export { identityCalibration };
